@@ -1,4 +1,5 @@
 import React from "react";
+import { colors } from "../../styles/colors";
 import { NoteInput } from "../NoteInput";
 
 export const AppMain: React.FC = () => {
@@ -11,6 +12,7 @@ export const AppMain: React.FC = () => {
         flexGrow: 1,
         justifyContent: "stretch",
         padding: 16,
+        backgroundColor: colors.teaGreen2,
       }}
     >
       <NoteInput
