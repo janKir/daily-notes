@@ -1,7 +1,6 @@
 import React from "react";
-
 import { DateBar } from "./DateBar";
-import { InputContainer } from "./InputContainer";
+import { ContentContainer } from "./ContentContainer";
 
 export const AppMain: React.FC = () => {
   return (
@@ -15,7 +14,7 @@ export const AppMain: React.FC = () => {
       }}
     >
       <DateBar />
-      <InputContainer />
+      <ContentContainer />
     </main>
   );
 };

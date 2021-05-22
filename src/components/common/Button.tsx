@@ -5,8 +5,8 @@ export interface ButtonProps {
   onClick: () => void;
 }
 
-export const Button: React.FC<ButtonProps> = React.forwardRef(
-  ({ onClick, children }) => {
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ onClick, children }, ref) => {
     return (
       <button
         type="button"
@@ -18,6 +18,7 @@ export const Button: React.FC<ButtonProps> = React.forwardRef(
           border: "none",
           cursor: "pointer",
         }}
+        ref={ref}
       >
         {children}
       </button>

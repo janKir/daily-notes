@@ -1,52 +1,47 @@
-import { addDays, subDays } from "date-fns";
 import React from "react";
-import ReactMarkdown from "react-markdown";
 import { useAppContext } from "../../contexts/AppContext";
 import { MdInput } from "../common/MdInput";
 
-export const InputContainer: React.FC = () => {
-  const { notes, setNotes, date } = useAppContext();
-  const yesterdayKey = subDays(date, 1).toDateString();
-  const todayKey = date.toDateString();
-  const tomorrowKey = addDays(date, 1).toDateString();
+export interface InputContainerProps {
+  dateKey: string;
+}
+
+export const InputContainer: React.FC<InputContainerProps> = ({ dateKey }) => {
+  const { notes, setNotes } = useAppContext();
+
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const [containerHeight, setContainerHeight] =
+    React.useState<undefined | number>(undefined);
+
+  React.useLayoutEffect(() => {
+    const height = containerRef.current?.clientHeight;
+    if (height !== containerHeight) {
+      setContainerHeight(height);
+    }
+  }, [containerHeight]);
 
   const [mode, setMode] = React.useState<"write" | "preview">("write");
 
   return (
     <div
       style={{
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "stretch",
-        justifyContent: "stretch",
-        flexGrow: 1,
+        flexBasis: 0,
+        flexGrow: 2,
+        marginLeft: 16,
+        marginRight: 16,
       }}
+      ref={containerRef}
     >
-      <div style={{ flexBasis: 0, flexGrow: 1 }}>
-        <ReactMarkdown>{notes[yesterdayKey] ?? "Keine Notiz"}</ReactMarkdown>
-      </div>
-      <div
-        style={{
-          flexBasis: 0,
-          flexGrow: 2,
-          marginLeft: 16,
-          marginRight: 16,
-          display: "flex",
-          justifyContent: "stretch",
-        }}
-      >
-        <MdInput
-          value={notes[todayKey] ?? ""}
-          onChangeText={(value) =>
-            setNotes((prevNotes) => ({ ...prevNotes, [todayKey]: value }))
-          }
-          mode={mode}
-          onSetMode={setMode}
-        />
-      </div>
-      <div style={{ flexBasis: 0, flexGrow: 1 }}>
-        <ReactMarkdown>{notes[tomorrowKey] ?? "Keine Notiz"}</ReactMarkdown>
-      </div>
+      <MdInput
+        value={notes[dateKey] ?? ""}
+        onChangeText={(value) =>
+          setNotes((prevNotes) => ({ ...prevNotes, [dateKey]: value }))
+        }
+        mode={mode}
+        onSetMode={setMode}
+        height={containerHeight}
+        key={containerHeight} // force re-mount to pick up height changes
+      />
     </div>
   );
 };
