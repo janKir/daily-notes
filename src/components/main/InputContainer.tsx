@@ -28,7 +28,7 @@ export const InputContainer: React.FC = () => {
         style={{ flexBasis: 0, flexGrow: 2, marginLeft: 16, marginRight: 16 }}
       >
         <MdInput
-          value={notes[todayKey] ?? "Keine Notiz"}
+          value={notes[todayKey] ?? ""}
           onChangeText={(value) =>
             setNotes((prevNotes) => ({ ...prevNotes, [todayKey]: value }))
           }
