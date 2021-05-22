@@ -1,11 +1,9 @@
 import React from "react";
-import { colors } from "../../styles/colors";
-import { NoteInput } from "../NoteInput";
+
 import { DateBar } from "./DateBar";
+import { InputContainer } from "./InputContainer";
 
 export const AppMain: React.FC = () => {
-  const [value, setValue] = React.useState("");
-
   return (
     <main
       style={{
@@ -17,11 +15,7 @@ export const AppMain: React.FC = () => {
       }}
     >
       <DateBar />
-      <NoteInput
-        value={value}
-        onChangeText={setValue}
-        placeholder="Deine Notizen für heute..."
-      />
+      <InputContainer />
     </main>
   );
 };

@@ -1,8 +1,9 @@
 import React from "react";
+import { useLocalStorageState } from "../hooks/useLocalStorageState";
 
-export interface Notes {
-  [date: string]: string;
-}
+export type Notes = {
+  [date in string]?: string;
+};
 
 export interface AppContextI {
   notes: Notes;
@@ -15,7 +16,7 @@ export const AppContext =
   React.createContext<AppContextI | undefined>(undefined);
 
 export const AppContextProvider: React.FC = ({ children }) => {
-  const [notes, setNotes] = React.useState<Notes>({});
+  const [notes, setNotes] = useLocalStorageState<Notes>("notes", {});
   const [date, setDate] = React.useState(new Date());
 
   return (
