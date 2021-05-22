@@ -1,7 +1,9 @@
+import { css } from "@linaria/core";
 import { addDays, subDays } from "date-fns";
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import { useAppContext } from "../../contexts/AppContext";
+import { Flex } from "../common/Flex";
 import { InputContainer } from "./InputContainer";
 
 export const ContentContainer: React.FC = () => {
@@ -11,34 +13,26 @@ export const ContentContainer: React.FC = () => {
   const tomorrowKey = addDays(date, 1).toDateString();
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "stretch",
-        justifyContent: "stretch",
-        flexGrow: 1,
-      }}
-    >
-      <div style={{ flexBasis: 0, flexGrow: 1 }}>
+    <Flex row align="stretch" justify="stretch" grow>
+      <Flex basis={0} grow>
         <ReactMarkdown>{notes[yesterdayKey] ?? "Keine Notiz"}</ReactMarkdown>
-      </div>
-      <div
-        style={{
-          flexBasis: 0,
-          flexGrow: 2,
-          marginLeft: 16,
-          marginRight: 16,
-          display: "flex",
-          justifyContent: "stretch",
-          alignItems: "stretch",
-        }}
+      </Flex>
+      <Flex
+        basis={0}
+        grow={2}
+        justify="stretch"
+        align="stretch"
+        className={todayContainerStyle}
       >
         <InputContainer dateKey={todayKey} />
-      </div>
-      <div style={{ flexBasis: 0, flexGrow: 1 }}>
+      </Flex>
+      <Flex basis={0} grow>
         <ReactMarkdown>{notes[tomorrowKey] ?? "Keine Notiz"}</ReactMarkdown>
-      </div>
-    </div>
+      </Flex>
+    </Flex>
   );
 };
+
+const todayContainerStyle = css`
+  margin: 0 16px;
+`;

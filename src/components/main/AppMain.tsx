@@ -1,20 +1,18 @@
 import React from "react";
+import { css } from "@linaria/core";
 import { DateBar } from "./DateBar";
 import { ContentContainer } from "./ContentContainer";
+import { Flex } from "../common/Flex";
 
 export const AppMain: React.FC = () => {
   return (
-    <main
-      style={{
-        flexGrow: 1,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "stretch",
-        padding: 16,
-      }}
-    >
+    <Flex grow align="stretch" className={mainStyle} tag="main">
       <DateBar />
       <ContentContainer />
-    </main>
+    </Flex>
   );
 };
+
+const mainStyle = css`
+  padding: 16px;
+`;

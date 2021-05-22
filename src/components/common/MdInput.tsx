@@ -8,7 +8,6 @@ export interface MdInputProps {
   onChangeText: (value: string) => void;
   mode: "write" | "preview";
   onSetMode: (mode: "write" | "preview") => void;
-  height?: number;
 }
 
 export const MdInput: React.FC<MdInputProps> = ({
@@ -16,9 +15,7 @@ export const MdInput: React.FC<MdInputProps> = ({
   onChangeText,
   mode,
   onSetMode,
-  height,
 }) => {
-  const heightWithoutToolbar = height ? height - 50 : undefined; // subtract height of editor toolbar and prevent infinite height increasing loop
   return (
     <ReactMde
       value={value}
@@ -28,9 +25,8 @@ export const MdInput: React.FC<MdInputProps> = ({
       generateMarkdownPreview={(markdown) =>
         Promise.resolve(<ReactMarkdown>{markdown}</ReactMarkdown>)
       }
-      minEditorHeight={heightWithoutToolbar}
-      minPreviewHeight={heightWithoutToolbar}
-      maxEditorHeight={heightWithoutToolbar}
+      minEditorHeight={500}
+      minPreviewHeight={500}
     />
   );
 };
