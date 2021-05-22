@@ -19,13 +19,21 @@ export const InputContainer: React.FC = () => {
         flexDirection: "row",
         alignItems: "stretch",
         justifyContent: "stretch",
+        flexGrow: 1,
       }}
     >
       <div style={{ flexBasis: 0, flexGrow: 1 }}>
         <ReactMarkdown>{notes[yesterdayKey] ?? "Keine Notiz"}</ReactMarkdown>
       </div>
       <div
-        style={{ flexBasis: 0, flexGrow: 2, marginLeft: 16, marginRight: 16 }}
+        style={{
+          flexBasis: 0,
+          flexGrow: 2,
+          marginLeft: 16,
+          marginRight: 16,
+          display: "flex",
+          justifyContent: "stretch",
+        }}
       >
         <MdInput
           value={notes[todayKey] ?? ""}
