@@ -5,20 +5,22 @@ export interface ButtonProps {
   onClick: () => void;
 }
 
-export const Button: React.FC<ButtonProps> = ({ onClick, children }) => {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      style={{
-        fontSize: 16,
-        color: colors.black,
-        backgroundColor: "transparent",
-        border: "none",
-        cursor: "pointer",
-      }}
-    >
-      {children}
-    </button>
-  );
-};
+export const Button: React.FC<ButtonProps> = React.forwardRef(
+  ({ onClick, children }) => {
+    return (
+      <button
+        type="button"
+        onClick={onClick}
+        style={{
+          fontSize: 16,
+          color: colors.black,
+          backgroundColor: "transparent",
+          border: "none",
+          cursor: "pointer",
+        }}
+      >
+        {children}
+      </button>
+    );
+  }
+);

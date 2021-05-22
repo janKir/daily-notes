@@ -1,5 +1,7 @@
 import React from "react";
 import { addDays, subDays } from "date-fns";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { useAppContext } from "../../contexts/AppContext";
 import { colors } from "../../styles/colors";
 import { Button } from "../common/Button";
@@ -7,6 +9,7 @@ import { formatDate } from "../../utils/formatDate";
 
 export const DateBar: React.FC = () => {
   const { date, setDate } = useAppContext();
+  const [showPicker, setShowPicker] = React.useState(false);
 
   return (
     <nav
@@ -39,7 +42,17 @@ export const DateBar: React.FC = () => {
           justifyContent: "center",
         }}
       >
-        <Button onClick={() => {}}>{formatDate(date)} </Button>
+        <div>
+          <DatePicker
+            selected={date}
+            onChange={(nextDate: Date) => setDate(nextDate)}
+            customInput={
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore -> props are inserted via ref
+              <Button>{formatDate(date)}</Button>
+            }
+          />
+        </div>
       </div>
       <div
         style={{
