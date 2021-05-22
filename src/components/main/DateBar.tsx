@@ -28,7 +28,7 @@ export const DateBar: React.FC = () => {
         }}
       >
         <Button onClick={() => setDate(subDays(date, 1))}>
-          {formatDate(subDays(date, 1))}
+          &lsaquo; {formatDate(subDays(date, 1))}
         </Button>
       </div>
       <div
@@ -50,7 +50,7 @@ export const DateBar: React.FC = () => {
         }}
       >
         <Button onClick={() => setDate(addDays(date, 1))}>
-          {formatDate(addDays(date, 1))}
+          {formatDate(addDays(date, 1))} &rsaquo;
         </Button>
       </div>
     </nav>
