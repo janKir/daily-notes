@@ -1,7 +1,12 @@
 import React from "react";
 import "./App.css";
 import { AppLayout } from "./AppLayout";
+import { AppContextProvider } from "./contexts/AppContext";
 
 export const App: React.FC = () => {
-  return <AppLayout />;
+  return (
+    <AppContextProvider>
+      <AppLayout />
+    </AppContextProvider>
+  );
 };

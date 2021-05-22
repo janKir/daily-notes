@@ -1,6 +1,7 @@
 import React from "react";
 import { colors } from "../../styles/colors";
 import { NoteInput } from "../NoteInput";
+import { DateBar } from "./DateBar";
 
 export const AppMain: React.FC = () => {
   const [value, setValue] = React.useState("");
@@ -8,13 +9,14 @@ export const AppMain: React.FC = () => {
   return (
     <main
       style={{
-        display: "flex",
         flexGrow: 1,
-        justifyContent: "stretch",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "stretch",
         padding: 16,
-        backgroundColor: colors.teaGreen2,
       }}
     >
+      <DateBar />
       <NoteInput
         value={value}
         onChangeText={setValue}
