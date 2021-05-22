@@ -15,6 +15,7 @@ export const Button: React.FC<ButtonProps> = ({ onClick, children }) => {
         color: colors.black,
         backgroundColor: "transparent",
         border: "none",
+        cursor: "pointer",
       }}
     >
       {children}
