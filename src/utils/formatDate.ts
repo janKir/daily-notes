@@ -1,19 +1,15 @@
 import { differenceInCalendarDays } from "date-fns";
 
-const rtf = new Intl.RelativeTimeFormat("en", {
+const locale = navigator.language;
+
+const rtf = new Intl.RelativeTimeFormat(locale, {
   localeMatcher: "best fit", // other values: "lookup"
   numeric: "auto", // other values: "auto"
   style: "long", // other values: "short" or "narrow"
 });
 
-const dtf = new Intl.DateTimeFormat("en");
-
-export function formatDate(date: Date): string {
+export function formatDiffDaysToday(date: Date): string {
   const now = new Date();
   const diffDays = differenceInCalendarDays(date, now);
-  if (Math.abs(diffDays) <= 1) {
-    return rtf.format(diffDays, "day");
-  }
-
-  return dtf.format(date);
+  return rtf.format(diffDays, "day");
 }
