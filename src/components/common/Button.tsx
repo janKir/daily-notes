@@ -7,9 +7,9 @@ export interface ButtonProps {
   disabled?: boolean;
 }
 
-export const Button: React.FC<ButtonProps> = React.forwardRef<
+export const Button = React.forwardRef<
   HTMLButtonElement,
-  ButtonProps
+  React.PropsWithChildren<ButtonProps>
 >(({ onClick, disabled, children }, ref) => {
   return (
     <button
