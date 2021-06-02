@@ -10,6 +10,7 @@ import { DateFrame } from "../common/DateFrame";
 import { DiffDays } from "./DiffDays";
 import { AnimatedSlideChange } from "../common/AnimatedSlideChange";
 import { useDateIsActiveDayOfWeek } from "../../hooks/useDateIsActiveDayOfWeek";
+import { useDateIsSkipped } from "../../hooks/useDateIsSkipped";
 
 export interface DateBarProps {
   dateBefore: Date;
@@ -28,6 +29,9 @@ export const DateBar: React.FC<DateBarProps> = ({
     rtl: 0,
   });
   const dateIsActive = useDateIsActiveDayOfWeek();
+  const dateIsSkipped = useDateIsSkipped();
+  const dateIsInactiveOrSkipped = (date: Date) =>
+    !dateIsActive(date) || dateIsSkipped(date);
 
   const prevButtonRef = React.useRef(null);
 
@@ -57,7 +61,7 @@ export const DateBar: React.FC<DateBarProps> = ({
                   &lsaquo;
                   <DateFrame
                     date={dateBefore}
-                    inactive={!dateIsActive(dateBefore)}
+                    inactive={dateIsInactiveOrSkipped(dateBefore)}
                   />
                 </Flex>
               </Button>
@@ -73,7 +77,10 @@ export const DateBar: React.FC<DateBarProps> = ({
                       cursor: pointer;
                     `}
                   >
-                    <DateFrame date={date} inactive={!dateIsActive(date)} />
+                    <DateFrame
+                      date={date}
+                      inactive={dateIsInactiveOrSkipped(date)}
+                    />
                   </div>
                 }
               />
@@ -83,7 +90,7 @@ export const DateBar: React.FC<DateBarProps> = ({
                 <Flex row align="center">
                   <DateFrame
                     date={dateAfter}
-                    inactive={!dateIsActive(dateAfter)}
+                    inactive={dateIsInactiveOrSkipped(dateAfter)}
                   />
                   &rsaquo;
                 </Flex>
