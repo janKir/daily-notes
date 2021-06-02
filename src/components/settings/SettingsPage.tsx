@@ -20,10 +20,9 @@ export const SettingsPage: React.FC = () => {
           [DayOfWeek, string]
         >
       ).map(([key, label]) => (
-        <div>
+        <div key={key}>
           <Checkbox
             label={label}
-            key={key}
             checked={daysOfWeek[key]}
             onChange={(checked) =>
               setDaysOfWeek((prev) => ({ ...prev, [key]: checked }))
