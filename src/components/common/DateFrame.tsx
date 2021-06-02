@@ -1,10 +1,11 @@
-import { css } from "@linaria/core";
+import { css, cx } from "@linaria/core";
 import React from "react";
 import { colors } from "../../styles/colors";
 import { Flex } from "./Flex";
 
 export interface DateFrameProps {
   date: Date;
+  inactive?: boolean;
 }
 
 const weekdayF = new Intl.DateTimeFormat([], { weekday: "short" });
@@ -12,9 +13,12 @@ const calendardayF = Intl.DateTimeFormat([], { day: "2-digit" });
 const monthF = Intl.DateTimeFormat([], { month: "short" });
 const yearF = Intl.DateTimeFormat([], { year: "2-digit" });
 
-export const DateFrame: React.FC<DateFrameProps> = ({ date }) => {
+export const DateFrame: React.FC<DateFrameProps> = ({ date, inactive }) => {
   return (
-    <Flex className={containerStyle} align="center">
+    <Flex
+      className={cx(containerStyle, inactive && containerInactiveStyle)}
+      align="center"
+    >
       <div className={smallFont}>{weekdayF.format(date)}</div>
       <div className={largeFont}>{calendardayF.format(date)}</div>
       <Flex row justify="space-between" className={smallFont}>
@@ -33,6 +37,10 @@ const containerStyle = css`
   &:hover {
     background-color: ${colors.teaGreen2};
   }
+`;
+
+const containerInactiveStyle = css`
+  background-color: ${colors.grayX11Gray};
 `;
 
 const largeFont = css`

@@ -3,19 +3,30 @@ import { addDays, subDays } from "date-fns";
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import { useAppContext } from "../../contexts/AppContext";
+import { getDateKey } from "../../utils/getDateKey";
 import { Flex } from "../common/Flex";
 import { InputContainer } from "./InputContainer";
 
-export const ContentContainer: React.FC = () => {
-  const { notes, date } = useAppContext();
-  const yesterdayKey = subDays(date, 1).toDateString();
-  const todayKey = date.toDateString();
-  const tomorrowKey = addDays(date, 1).toDateString();
+export interface ContentContainerProps {
+  dateBefore: Date;
+  date: Date;
+  dateAfter: Date;
+}
+
+export const ContentContainer: React.FC<ContentContainerProps> = ({
+  dateBefore,
+  date,
+  dateAfter,
+}) => {
+  const { notes } = useAppContext();
+  const dateBeforeKey = getDateKey(dateBefore);
+  const dateKey = getDateKey(date);
+  const dateAfterKey = getDateKey(dateAfter);
 
   return (
     <Flex row align="stretch" justify="stretch" grow>
       <Flex basis={0} grow>
-        <ReactMarkdown>{notes[yesterdayKey] ?? "Keine Notiz"}</ReactMarkdown>
+        <ReactMarkdown>{notes[dateBeforeKey] ?? "Keine Notiz"}</ReactMarkdown>
       </Flex>
       <Flex
         basis={0}
@@ -24,10 +35,10 @@ export const ContentContainer: React.FC = () => {
         align="stretch"
         className={todayContainerStyle}
       >
-        <InputContainer dateKey={todayKey} />
+        <InputContainer dateKey={dateKey} />
       </Flex>
       <Flex basis={0} grow>
-        <ReactMarkdown>{notes[tomorrowKey] ?? "Keine Notiz"}</ReactMarkdown>
+        <ReactMarkdown>{notes[dateAfterKey] ?? "Keine Notiz"}</ReactMarkdown>
       </Flex>
     </Flex>
   );
