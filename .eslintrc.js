@@ -68,5 +68,8 @@ module.exports = {
     "unicorn/no-reduce": "off",
     "unicorn/no-useless-undefined": "off",
     "deprecation/deprecation": "warn", // will report all deprecated code
+    "jsx-a11y/label-has-associated-control": ["error", {
+      assert: "either"
+    }]
   },
 };
