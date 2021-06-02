@@ -4,15 +4,11 @@ import { DateBar } from "./DateBar";
 import { ContentContainer } from "./ContentContainer";
 import { Flex } from "../common/Flex";
 
-export const AppMain: React.FC = () => {
+export const MainPage: React.FC = () => {
   return (
-    <Flex grow align="stretch" className={mainStyle} tag="main">
+    <div>
       <DateBar />
       <ContentContainer />
-    </Flex>
+    </div>
   );
 };
-
-const mainStyle = css`
-  padding: 16px;
-`;
