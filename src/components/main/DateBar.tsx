@@ -30,8 +30,8 @@ export const DateBar: React.FC<DateBarProps> = ({
   });
   const dateIsActive = useDateIsActiveDayOfWeek();
   const dateIsSkipped = useDateIsSkipped();
-  const dateIsInactiveOrSkipped = (date: Date) =>
-    !dateIsActive(date) || dateIsSkipped(date);
+  const dateIsInactiveOrSkipped = (_date: Date): boolean =>
+    !dateIsActive(_date) || dateIsSkipped(_date);
 
   const prevButtonRef = React.useRef(null);
 

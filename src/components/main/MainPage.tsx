@@ -1,8 +1,6 @@
 import React from "react";
-import { css } from "@linaria/core";
 import { DateBar } from "./DateBar";
 import { ContentContainer } from "./ContentContainer";
-import { Flex } from "../common/Flex";
 import { useAppContext } from "../../contexts/AppContext";
 import { useGetNextActiveDateOrWithNote } from "../../hooks/useGetNextActiveDateOrWithNote";
 
