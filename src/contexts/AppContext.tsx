@@ -6,13 +6,13 @@ export type Notes = {
 };
 
 export interface TrackingEntry {
-  planned: number;
-  actual: number;
-} 
+  planned?: number;
+  actual?: number;
+}
 
 export type Tracking = {
   [date in string]?: TrackingEntry;
-}
+};
 
 export interface AppContextI {
   notes: Notes;
@@ -28,11 +28,16 @@ export const AppContext =
 
 export const AppContextProvider: React.FC = ({ children }) => {
   const [notes, setNotes] = useLocalStorageState<Notes>("notes", {});
-  const [trackings, setTrackings] = useLocalStorageState<Tracking>("trackings", {});
+  const [trackings, setTrackings] = useLocalStorageState<Tracking>(
+    "trackings",
+    {}
+  );
   const [date, setDate] = React.useState(new Date());
 
   return (
-    <AppContext.Provider value={{ notes, setNotes, trackings, setTrackings, date, setDate }}>
+    <AppContext.Provider
+      value={{ notes, setNotes, trackings, setTrackings, date, setDate }}
+    >
       {children}
     </AppContext.Provider>
   );
