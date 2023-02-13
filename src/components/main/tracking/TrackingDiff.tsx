@@ -11,11 +11,11 @@ export const TrackingDiff: React.FC<TrackingDiffProps> = ({
   planned,
   actual,
 }) => {
-  if (planned === undefined || actual === undefined) {
+  if (actual === undefined) {
     return <span title="Difference">-</span>;
   }
 
-  const diff = actual - planned;
+  const diff = actual - (planned ?? 0);
 
   return (
     <span
