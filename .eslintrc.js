@@ -39,6 +39,7 @@ module.exports = {
     // No jsx extension: https://github.com/facebook/create-react-app/issues/87#issuecomment-234627904
     "react/jsx-filename-extension": "off",
     "react/jsx-key": "warn",
+    "react/jsx-props-no-spreading": "off",
     // Use function hoisting to improve code readability
     "@typescript-eslint/no-use-before-define": [
       "error",
@@ -55,6 +56,8 @@ module.exports = {
     ],
     // Common abbreviations are known and readable
     "unicorn/prevent-abbreviations": "off",
+    "unicorn/no-array-reduce": "off",
+    "unicorn/no-null": "off",
     "@typescript-eslint/no-implied-eval": "off",
     "@typescript-eslint/no-throw-literal": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
