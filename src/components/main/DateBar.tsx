@@ -1,6 +1,7 @@
 import React from "react";
 import { isBefore } from "date-fns";
-import DatePicker from "react-datepicker";
+import de from "date-fns/locale/de";
+import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { css } from "@linaria/core";
 import { useAppContext } from "../../contexts/AppContext";
@@ -11,6 +12,8 @@ import { DiffDays } from "./DiffDays";
 import { AnimatedSlideChange } from "../common/AnimatedSlideChange";
 import { useDateIsActiveDayOfWeek } from "../../hooks/useDateIsActiveDayOfWeek";
 import { useDateIsSkipped } from "../../hooks/useDateIsSkipped";
+
+registerLocale("de", de);
 
 export interface DateBarProps {
   dateBefore: Date;
@@ -83,6 +86,7 @@ export const DateBar: React.FC<DateBarProps> = ({
                     />
                   </div>
                 }
+                locale="de"
               />
             </Flex>
             <Flex row basis={0} grow justify="center">
