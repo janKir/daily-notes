@@ -27,11 +27,11 @@ export const ContentContainer: React.FC<ContentContainerProps> = ({
 
   return (
     <Flex row align="stretch" justify="stretch" grow>
-      <Flex basis={0} grow>
+      <Flex basis="25%" grow>
         <ReactMarkdown>{notes[dateBeforeKey] ?? "Keine Notiz"}</ReactMarkdown>
       </Flex>
       <Flex
-        basis={0}
+        basis="50%"
         grow={2}
         justify="stretch"
         align="stretch"
@@ -40,7 +40,7 @@ export const ContentContainer: React.FC<ContentContainerProps> = ({
         <InputContainer dateKey={dateKey} />
         {trackingActivated && <Tracking date={date} />}
       </Flex>
-      <Flex basis={0} grow>
+      <Flex basis="25%" grow>
         <ReactMarkdown>{notes[dateAfterKey] ?? "Keine Notiz"}</ReactMarkdown>
       </Flex>
     </Flex>
