@@ -1,20 +1,17 @@
 import { endOfMonth, endOfWeek, startOfMonth, startOfWeek } from "date-fns";
 import React from "react";
-import { useAppContext } from "../../contexts/AppContext";
-import { useTrackingTotals } from "../../hooks/useTrackingTotals";
-import { getDateKey } from "../../utils/getDateKey";
-import { stateRecord } from "../../utils/stateRecord";
-import { TrackingRow } from "./tracking/TrackingRow";
+import { useAppContext } from "../../../contexts/AppContext";
+import { useTrackingTotals } from "../../../hooks/useTrackingTotals";
+import { getDateKey } from "../../../utils/getDateKey";
+import { stateRecord } from "../../../utils/stateRecord";
+import { TrackingRow } from "./TrackingRow";
 
-export interface TrackingByDateProps {
+export interface TrackingProps {
   date: Date;
   readonly?: boolean;
 }
 
-export const TrackingByDate: React.FC<TrackingByDateProps> = ({
-  date,
-  readonly,
-}) => {
+export const Tracking: React.FC<TrackingProps> = ({ date, readonly }) => {
   const { trackings, setTrackings } = useAppContext();
   const [tracking, setTracking] = stateRecord(
     trackings,

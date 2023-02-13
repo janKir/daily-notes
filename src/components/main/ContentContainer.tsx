@@ -6,7 +6,7 @@ import { useSettingsContext } from "../../contexts/SettingsContext";
 import { getDateKey } from "../../utils/getDateKey";
 import { Flex } from "../common/Flex";
 import { InputContainer } from "./InputContainer";
-import { TrackingByDate } from "./TrackingByDate";
+import { Tracking } from "./tracking/Tracking";
 
 export interface ContentContainerProps {
   dateBefore: Date;
@@ -38,7 +38,7 @@ export const ContentContainer: React.FC<ContentContainerProps> = ({
         className={todayContainerStyle}
       >
         <InputContainer dateKey={dateKey} />
-        {trackingActivated && <TrackingByDate date={date} />}
+        {trackingActivated && <Tracking date={date} />}
       </Flex>
       <Flex basis={0} grow>
         <ReactMarkdown>{notes[dateAfterKey] ?? "Keine Notiz"}</ReactMarkdown>
