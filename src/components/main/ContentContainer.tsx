@@ -2,6 +2,7 @@ import { css } from "@linaria/core";
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import { useAppContext } from "../../contexts/AppContext";
+import { useSettingsContext } from "../../contexts/SettingsContext";
 import { getDateKey } from "../../utils/getDateKey";
 import { Flex } from "../common/Flex";
 import { InputContainer } from "./InputContainer";
@@ -18,6 +19,7 @@ export const ContentContainer: React.FC<ContentContainerProps> = ({
   date,
   dateAfter,
 }) => {
+  const { trackingActivated } = useSettingsContext();
   const { notes } = useAppContext();
   const dateBeforeKey = getDateKey(dateBefore);
   const dateKey = getDateKey(date);
@@ -36,7 +38,7 @@ export const ContentContainer: React.FC<ContentContainerProps> = ({
         className={todayContainerStyle}
       >
         <InputContainer dateKey={dateKey} />
-        <TrackingByDate dateKey={dateKey} />
+        {trackingActivated && <TrackingByDate date={date} />}
       </Flex>
       <Flex basis={0} grow>
         <ReactMarkdown>{notes[dateAfterKey] ?? "Keine Notiz"}</ReactMarkdown>

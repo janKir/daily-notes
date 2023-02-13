@@ -14,7 +14,7 @@ export interface FlexProps {
     | "space-around"
     | "space-evenly";
   grow?: true | number;
-  basis?: number;
+  basis?: string | 0;
   className?: string;
   tag?: keyof JSX.IntrinsicElements;
 }

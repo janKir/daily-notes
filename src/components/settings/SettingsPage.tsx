@@ -6,7 +6,8 @@ import { DayOfWeek } from "../../models/day-of-week/types";
 import { Checkbox } from "../common/Checkbox";
 
 export const SettingsPage: React.FC = () => {
-  const { daysOfWeek, setDaysOfWeek } = useSettingsContext();
+  const { daysOfWeek, setDaysOfWeek, trackingActivated, setTrackingActivated } =
+    useSettingsContext();
   return (
     <div>
       <small>
@@ -30,6 +31,13 @@ export const SettingsPage: React.FC = () => {
           />
         </div>
       ))}
+
+      <h2>Tracking</h2>
+      <Checkbox
+        label="Tracking aktivieren"
+        checked={trackingActivated}
+        onChange={setTrackingActivated}
+      />
     </div>
   );
 };

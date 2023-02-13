@@ -6,6 +6,8 @@ import { DaysOfWeekSetting } from "../models/day-of-week/types";
 export interface SettingsContextI {
   daysOfWeek: DaysOfWeekSetting;
   setDaysOfWeek: React.Dispatch<React.SetStateAction<DaysOfWeekSetting>>;
+  trackingActivated: boolean;
+  setTrackingActivated: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const SettingsContext =
@@ -16,9 +18,18 @@ export const SettingsContextProvider: React.FC = ({ children }) => {
     "daysOfWeek",
     defaultDaysOfWeekSetting
   );
+  const [trackingActivated, setTrackingActivated] =
+    useLocalStorageState<boolean>("trackingActivated", false);
 
   return (
-    <SettingsContext.Provider value={{ daysOfWeek, setDaysOfWeek }}>
+    <SettingsContext.Provider
+      value={{
+        daysOfWeek,
+        setDaysOfWeek,
+        trackingActivated,
+        setTrackingActivated,
+      }}
+    >
       {children}
     </SettingsContext.Provider>
   );
