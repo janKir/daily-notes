@@ -13,7 +13,9 @@ export interface SettingsContextI {
 export const SettingsContext =
   React.createContext<SettingsContextI | undefined>(undefined);
 
-export const SettingsContextProvider: React.FC = ({ children }) => {
+export const SettingsContextProvider: React.FC<React.PropsWithChildren> = ({
+  children,
+}) => {
   const [daysOfWeek, setDaysOfWeek] = useLocalStorageState<DaysOfWeekSetting>(
     "daysOfWeek",
     defaultDaysOfWeekSetting

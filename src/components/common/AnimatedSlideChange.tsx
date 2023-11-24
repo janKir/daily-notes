@@ -10,12 +10,9 @@ export interface AnimatedSlideChangeProps {
   translate?: string;
 }
 
-export const AnimatedSlideChange: React.FC<AnimatedSlideChangeProps> = ({
-  direction,
-  changeKey,
-  translate = "200px",
-  children,
-}) => {
+export const AnimatedSlideChange: React.FC<
+  React.PropsWithChildren<AnimatedSlideChangeProps>
+> = ({ direction, changeKey, translate = "200px", children }) => {
   const ref = React.useRef<HTMLDivElement>(null);
 
   return (

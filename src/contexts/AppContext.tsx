@@ -26,7 +26,9 @@ export interface AppContextI {
 export const AppContext =
   React.createContext<AppContextI | undefined>(undefined);
 
-export const AppContextProvider: React.FC = ({ children }) => {
+export const AppContextProvider: React.FC<React.PropsWithChildren> = ({
+  children,
+}) => {
   const [notes, setNotes] = useLocalStorageState<Notes>("notes", {});
   const [trackings, setTrackings] = useLocalStorageState<Tracking>(
     "trackings",

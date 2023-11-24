@@ -19,7 +19,7 @@ export interface FlexProps {
   tag?: keyof JSX.IntrinsicElements;
 }
 
-export const Flex: React.FC<FlexProps> = ({
+export const Flex: React.FC<React.PropsWithChildren<FlexProps>> = ({
   row,
   align = "flex-start",
   justify = "flex-start",
