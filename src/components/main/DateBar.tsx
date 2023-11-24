@@ -48,69 +48,75 @@ export const DateBar: React.FC<DateBarProps> = ({
   };
 
   return (
-    <AnimatedSlideChange
-      direction="ltr"
-      changeKey={transitionCounter.ltr.toString()}
-    >
+    <div className={containerStyle}>
       <AnimatedSlideChange
-        direction="rtl"
-        changeKey={transitionCounter.rtl.toString()}
+        direction="ltr"
+        changeKey={transitionCounter.ltr.toString()}
       >
-        <Flex align="stretch" tag="nav" className={barStyle}>
-          <Flex row justify="space-evenly" align="center">
-            <Flex row basis={0} grow justify="center" align="center">
-              <Button onClick={() => setDate(dateBefore)} ref={prevButtonRef}>
-                <Flex row align="center">
-                  &lsaquo;
-                  <DateFrame
-                    date={dateBefore}
-                    inactive={dateIsInactiveOrSkipped(dateBefore)}
-                  />
-                </Flex>
-              </Button>
-            </Flex>
-
-            <Flex row basis={0} grow={2} justify="center">
-              <DatePicker
-                selected={date}
-                onChange={(nextDate: Date) => setDate(nextDate)}
-                customInput={
-                  <div
-                    className={css`
-                      cursor: pointer;
-                    `}
-                  >
+        <AnimatedSlideChange
+          direction="rtl"
+          changeKey={transitionCounter.rtl.toString()}
+        >
+          <Flex align="stretch" tag="nav" className={barStyle}>
+            <Flex row justify="space-evenly" align="center">
+              <Flex row basis={0} grow justify="center" align="center">
+                <Button onClick={() => setDate(dateBefore)} ref={prevButtonRef}>
+                  <Flex row align="center">
+                    &lsaquo;
                     <DateFrame
-                      date={date}
-                      inactive={dateIsInactiveOrSkipped(date)}
+                      date={dateBefore}
+                      inactive={dateIsInactiveOrSkipped(dateBefore)}
                     />
-                  </div>
-                }
-                locale="de"
-              />
-            </Flex>
-            <Flex row basis={0} grow justify="center">
-              <Button onClick={() => setDate(dateAfter)}>
-                <Flex row align="center">
-                  <DateFrame
-                    date={dateAfter}
-                    inactive={dateIsInactiveOrSkipped(dateAfter)}
-                  />
-                  &rsaquo;
-                </Flex>
-              </Button>
-            </Flex>
-          </Flex>
+                  </Flex>
+                </Button>
+              </Flex>
 
-          <Flex row justify="center">
-            <DiffDays date={date} onClick={() => setDate(new Date())} />
+              <Flex row basis={0} grow={2} justify="center">
+                <DatePicker
+                  selected={date}
+                  onChange={(nextDate: Date) => setDate(nextDate)}
+                  customInput={
+                    <div
+                      className={css`
+                        cursor: pointer;
+                      `}
+                    >
+                      <DateFrame
+                        date={date}
+                        inactive={dateIsInactiveOrSkipped(date)}
+                      />
+                    </div>
+                  }
+                  locale="de"
+                />
+              </Flex>
+              <Flex row basis={0} grow justify="center">
+                <Button onClick={() => setDate(dateAfter)}>
+                  <Flex row align="center">
+                    <DateFrame
+                      date={dateAfter}
+                      inactive={dateIsInactiveOrSkipped(dateAfter)}
+                    />
+                    &rsaquo;
+                  </Flex>
+                </Button>
+              </Flex>
+            </Flex>
+
+            <Flex row justify="center">
+              <DiffDays date={date} onClick={() => setDate(new Date())} />
+            </Flex>
           </Flex>
-        </Flex>
+        </AnimatedSlideChange>
       </AnimatedSlideChange>
-    </AnimatedSlideChange>
+    </div>
   );
 };
 
 const barStyle = css`
   margin-bottom: 16px;
+`;
+
+const containerStyle = css`
+  overflow: hidden;
 `;
