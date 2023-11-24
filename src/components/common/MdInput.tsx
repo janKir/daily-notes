@@ -1,7 +1,7 @@
 import React from "react";
-import ReactMde from "react-mde";
+import ReactMde from "@trevor-immunefi/react-mde";
 import ReactMarkdown from "react-markdown";
-import "react-mde/lib/styles/css/react-mde-all.css";
+import "@trevor-immunefi/react-mde/lib/styles/css/react-mde-all.css";
 
 export interface MdInputProps {
   value: string;

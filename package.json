@@ -18,10 +18,10 @@
     "@linaria/vite": "^5.0.4",
     "date-fns": "^2.21.3",
     "react": "^18.2.0",
-    "react-datepicker": "^3.8.0",
+    "react-datepicker": "^4.23.0",
     "react-dom": "^18.2.0",
     "react-markdown": "^6.0.2",
-    "react-mde": "^11.5.0",
+    "@trevor-immunefi/react-mde": "^11.5.1",
     "react-router-dom": "^6.20.0",
     "react-transition-group": "^4.4.1"
   },
