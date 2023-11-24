@@ -1,6 +1,6 @@
 import { css } from "@linaria/core";
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Flex } from "./components/common/Flex";
 import { AppFooter } from "./components/footer/AppFooter";
 import { AppHeader } from "./components/header/AppHeader";
@@ -13,14 +13,10 @@ export const AppLayout: React.FC = () => {
       <Flex className={appStyle} align="stretch">
         <AppHeader />
         <Flex grow align="stretch" className={mainStyle} tag="main">
-          <Switch>
-            <Route path="/settings">
-              <SettingsPage />
-            </Route>
-            <Route path="/">
-              <MainPage />
-            </Route>
-          </Switch>
+          <Routes>
+            <Route path="/" element={<MainPage />} />
+            <Route path="/settings" element={<SettingsPage />} />
+          </Routes>
         </Flex>
         <AppFooter />
       </Flex>
