@@ -17,6 +17,7 @@ export interface FlexProps {
   basis?: string | 0;
   className?: string;
   tag?: keyof React.JSX.IntrinsicElements;
+  role?: React.AriaRole;
 }
 
 export const Flex: React.FC<React.PropsWithChildren<FlexProps>> = ({
@@ -27,6 +28,7 @@ export const Flex: React.FC<React.PropsWithChildren<FlexProps>> = ({
   basis,
   className,
   tag: HtmlTag = "div",
+  role,
   children,
 }) => {
   return (
@@ -39,6 +41,7 @@ export const Flex: React.FC<React.PropsWithChildren<FlexProps>> = ({
         "--grow": grow === true ? 1 : grow ?? "initial",
         "--basis": basis ?? "initial",
       })}
+      role={role}
     >
       {children}
     </HtmlTag>
