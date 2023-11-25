@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useSettingsContext } from "../../contexts/SettingsContext";
 import { daysOfWeekLabels } from "../../models/day-of-week/constants";
-import { DayOfWeek } from "../../models/day-of-week/types";
 import { Checkbox } from "../common/Checkbox";
+import { listDaysOfWeek } from "../../utils/listDaysOfWeek";
 
 export const SettingsPage: React.FC = () => {
   const { daysOfWeek, setDaysOfWeek, trackingActivated, setTrackingActivated } =
@@ -16,14 +16,10 @@ export const SettingsPage: React.FC = () => {
       <h1>Einstellungen</h1>
       <h2>Wochentage</h2>
       <p>Welche Wochentage sollen in der Zeitleiste angezeigt werden?</p>
-      {(
-        Object.entries(daysOfWeekLabels) as unknown as Array<
-          [DayOfWeek, string]
-        >
-      ).map(([key, label]) => (
+      {listDaysOfWeek().map((key) => (
         <div key={key}>
           <Checkbox
-            label={label}
+            label={daysOfWeekLabels[key]}
             checked={daysOfWeek[key]}
             onChange={(checked) =>
               setDaysOfWeek((prev) => ({ ...prev, [key]: checked }))
