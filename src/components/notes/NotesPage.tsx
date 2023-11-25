@@ -4,7 +4,7 @@ import { ContentContainer } from "./ContentContainer";
 import { useAppContext } from "../../contexts/AppContext";
 import { useGetNextActiveDateOrWithNote } from "../../hooks/useGetNextActiveDateOrWithNote";
 
-export const MainPage: React.FC = () => {
+export const NotesPage: React.FC = () => {
   const { date } = useAppContext();
   const getNextActiveDateOrWithNote = useGetNextActiveDateOrWithNote();
 

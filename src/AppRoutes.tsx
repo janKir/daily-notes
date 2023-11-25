@@ -1,12 +1,12 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { MainPage } from "./components/main/MainPage";
+import { NotesPage } from "./components/notes/NotesPage";
 import { SettingsPage } from "./components/settings/SettingsPage";
 
 export const AppRoutes: React.FC = () => {
   return (
     <Routes>
-      <Route path="/" element={<MainPage />} />
+      <Route path="/" element={<NotesPage />} />
       <Route path="/settings" element={<SettingsPage />} />
     </Routes>
   );
