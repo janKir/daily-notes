@@ -23,7 +23,7 @@ export const TrackingDiff: React.FC<TrackingDiffProps> = ({
       className={cx(
         diff < 0 && diffNegativeStyles,
         diff > 0 && diffPositiveStyles,
-        diff === 0 && diffNeutralStyles
+        diff === 0 && diffNeutralStyles,
       )}
     >
       {formatHours(diff, { alwaysSign: true })}

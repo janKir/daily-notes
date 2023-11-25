@@ -1,6 +1,6 @@
 export function formatHours(
   hours: number,
-  options: { alwaysSign?: boolean } = {}
+  options: { alwaysSign?: boolean } = {},
 ): string {
   const absHours = Math.abs(hours);
   const h = Math.floor(absHours);

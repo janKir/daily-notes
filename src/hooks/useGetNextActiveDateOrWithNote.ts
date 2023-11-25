@@ -6,7 +6,7 @@ import { useDateIsSkipped } from "./useDateIsSkipped";
 
 export function useGetNextActiveDateOrWithNote(): (
   date: Date,
-  past?: boolean
+  past?: boolean,
 ) => Date {
   const dateHasNote = useDateHasNote();
   const dateIsActiveDayOfWeek = useDateIsActiveDayOfWeek();

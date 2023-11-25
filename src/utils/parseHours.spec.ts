@@ -17,7 +17,7 @@ describe("parseHours", () => {
     "should parse float number with . decimal separator %s",
     (input: string, expected: number) => {
       expect(parseHours(input)).toBe(expected);
-    }
+    },
   );
 
   it.each([
@@ -29,7 +29,7 @@ describe("parseHours", () => {
     "should parse float number with , decimal separator %s",
     (input: string, expected: number) => {
       expect(parseHours(input)).toBe(expected);
-    }
+    },
   );
 
   it.each([
@@ -41,6 +41,6 @@ describe("parseHours", () => {
     "should parse float number with hh:mm format %s",
     (input: string, expected: number) => {
       expect(parseHours(input)).toBe(expected);
-    }
+    },
   );
 });

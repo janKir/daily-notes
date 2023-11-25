@@ -3,10 +3,10 @@ import { optionalCall } from "../utils/optionalCall";
 
 export function useLocalStorageState<T>(
   key: string,
-  initialState: T
+  initialState: T,
 ): [T, React.Dispatch<React.SetStateAction<T>>] {
   const [state, setStateInternal] = React.useState<T>(
-    optionalCall(JSON.parse, initialState)(localStorage.getItem(key))
+    optionalCall(JSON.parse, initialState)(localStorage.getItem(key)),
   );
 
   const setState: React.Dispatch<React.SetStateAction<T>> = (arg) => {

@@ -10,15 +10,16 @@ export interface SettingsContextI {
   setTrackingActivated: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const SettingsContext =
-  React.createContext<SettingsContextI | undefined>(undefined);
+export const SettingsContext = React.createContext<
+  SettingsContextI | undefined
+>(undefined);
 
 export const SettingsContextProvider: React.FC<React.PropsWithChildren> = ({
   children,
 }) => {
   const [daysOfWeek, setDaysOfWeek] = useLocalStorageState<DaysOfWeekSetting>(
     "daysOfWeek",
-    defaultDaysOfWeekSetting
+    defaultDaysOfWeekSetting,
   );
   const [trackingActivated, setTrackingActivated] =
     useLocalStorageState<boolean>("trackingActivated", false);
@@ -41,7 +42,7 @@ export function useSettingsContext(): SettingsContextI {
   const settingsContext = React.useContext(SettingsContext);
   if (!settingsContext) {
     throw new Error(
-      "tried to access SettingsContext outside the scope of its provider"
+      "tried to access SettingsContext outside the scope of its provider",
     );
   }
   return settingsContext;

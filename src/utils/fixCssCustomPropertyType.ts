@@ -4,7 +4,7 @@ type AnyCssProperties = {
 };
 
 export function fixCssCustomProperty(
-  props: AnyCssProperties
+  props: AnyCssProperties,
 ): AnyCssProperties {
   return props;
 }

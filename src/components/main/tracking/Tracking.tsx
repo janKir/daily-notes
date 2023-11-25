@@ -15,7 +15,7 @@ export const Tracking: React.FC<TrackingProps> = ({ date, readonly }) => {
   const { trackings, setTrackings } = useAppContext();
   const [tracking, setTracking] = stateRecord(
     trackings,
-    setTrackings
+    setTrackings,
   )(getDateKey(date));
 
   const weekTotals = useTrackingTotals({

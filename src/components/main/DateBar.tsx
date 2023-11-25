@@ -43,7 +43,7 @@ export const DateBar: React.FC<DateBarProps> = ({
     setTransitionCounter((prev) =>
       isBefore(nextDate, date)
         ? { ltr: prev.ltr, rtl: prev.rtl + 1 }
-        : { ltr: prev.ltr + 1, rtl: prev.rtl }
+        : { ltr: prev.ltr + 1, rtl: prev.rtl },
     );
   };
 
