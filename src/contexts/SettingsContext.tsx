@@ -1,9 +1,14 @@
 import React from "react";
 import { useLocalStorageState } from "../hooks/useLocalStorageState";
-import { defaultDaysOfWeekSetting } from "../models/day-of-week/constants";
-import { DaysOfWeekSetting } from "../models/day-of-week/types";
+import {
+  defaultDaysOfWeekSetting,
+  defaultFirstDayOfWeekSetting,
+} from "../models/day-of-week/constants";
+import { DayOfWeek, DaysOfWeekSetting } from "../models/day-of-week/types";
 
 export interface SettingsContextI {
+  firstDayOfWeek: DayOfWeek;
+  setFirstDayOfWeek: React.Dispatch<React.SetStateAction<DayOfWeek>>;
   daysOfWeek: DaysOfWeekSetting;
   setDaysOfWeek: React.Dispatch<React.SetStateAction<DaysOfWeekSetting>>;
   trackingActivated: boolean;
@@ -17,6 +22,10 @@ export const SettingsContext = React.createContext<
 export const SettingsContextProvider: React.FC<React.PropsWithChildren> = ({
   children,
 }) => {
+  const [firstDayOfWeek, setFirstDayOfWeek] = useLocalStorageState<DayOfWeek>(
+    "firstDayOfWeek",
+    defaultFirstDayOfWeekSetting,
+  );
   const [daysOfWeek, setDaysOfWeek] = useLocalStorageState<DaysOfWeekSetting>(
     "daysOfWeek",
     defaultDaysOfWeekSetting,
@@ -26,12 +35,21 @@ export const SettingsContextProvider: React.FC<React.PropsWithChildren> = ({
 
   const contextValue = React.useMemo(
     () => ({
+      firstDayOfWeek,
+      setFirstDayOfWeek,
       daysOfWeek,
       setDaysOfWeek,
       trackingActivated,
       setTrackingActivated,
     }),
-    [daysOfWeek, setDaysOfWeek, trackingActivated, setTrackingActivated],
+    [
+      firstDayOfWeek,
+      setFirstDayOfWeek,
+      daysOfWeek,
+      setDaysOfWeek,
+      trackingActivated,
+      setTrackingActivated,
+    ],
   );
 
   return (

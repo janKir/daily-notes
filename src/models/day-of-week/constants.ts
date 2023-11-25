@@ -1,5 +1,7 @@
 import { DayOfWeek, DaysOfWeekSetting } from "./types";
 
+export const defaultFirstDayOfWeekSetting: DayOfWeek = DayOfWeek.Mon;
+
 export const defaultDaysOfWeekSetting: DaysOfWeekSetting = {
   [DayOfWeek.Mon]: true,
   [DayOfWeek.Tue]: true,

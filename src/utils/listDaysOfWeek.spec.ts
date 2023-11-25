@@ -19,6 +19,7 @@ describe("listDaysOfWeek", () => {
     // Assert
     expect(actual).toEqual(expected);
   });
+
   it("should return all days of week starting with Tuesday", () => {
     // Arrange
     const startWith = DayOfWeek.Tue;
@@ -36,6 +37,7 @@ describe("listDaysOfWeek", () => {
     // Assert
     expect(actual).toEqual(expected);
   });
+
   it("should return all days of week starting with Wednesday", () => {
     // Arrange
     const startWith = DayOfWeek.Wed;
@@ -53,6 +55,7 @@ describe("listDaysOfWeek", () => {
     // Assert
     expect(actual).toEqual(expected);
   });
+
   it("should return all days of week starting with Thursday", () => {
     // Arrange
     const startWith = DayOfWeek.Thu;
@@ -64,6 +67,60 @@ describe("listDaysOfWeek", () => {
       DayOfWeek.Mon,
       DayOfWeek.Tue,
       DayOfWeek.Wed,
+    ];
+    // Act
+    const actual = listDaysOfWeek(startWith);
+    // Assert
+    expect(actual).toEqual(expected);
+  });
+
+  it("should return all days of week starting with Friday", () => {
+    // Arrange
+    const startWith = DayOfWeek.Fri;
+    const expected = [
+      DayOfWeek.Fri,
+      DayOfWeek.Sat,
+      DayOfWeek.Sun,
+      DayOfWeek.Mon,
+      DayOfWeek.Tue,
+      DayOfWeek.Wed,
+      DayOfWeek.Thu,
+    ];
+    // Act
+    const actual = listDaysOfWeek(startWith);
+    // Assert
+    expect(actual).toEqual(expected);
+  });
+
+  it("should return all days of week starting with Saturday", () => {
+    // Arrange
+    const startWith = DayOfWeek.Sat;
+    const expected = [
+      DayOfWeek.Sat,
+      DayOfWeek.Sun,
+      DayOfWeek.Mon,
+      DayOfWeek.Tue,
+      DayOfWeek.Wed,
+      DayOfWeek.Thu,
+      DayOfWeek.Fri,
+    ];
+    // Act
+    const actual = listDaysOfWeek(startWith);
+    // Assert
+    expect(actual).toEqual(expected);
+  });
+
+  it("should return all days of week starting with Sunday", () => {
+    // Arrange
+    const startWith = DayOfWeek.Sun;
+    const expected = [
+      DayOfWeek.Sun,
+      DayOfWeek.Mon,
+      DayOfWeek.Tue,
+      DayOfWeek.Wed,
+      DayOfWeek.Thu,
+      DayOfWeek.Fri,
+      DayOfWeek.Sat,
     ];
     // Act
     const actual = listDaysOfWeek(startWith);

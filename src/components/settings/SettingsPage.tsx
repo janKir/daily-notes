@@ -4,10 +4,23 @@ import { useSettingsContext } from "../../contexts/SettingsContext";
 import { daysOfWeekLabels } from "../../models/day-of-week/constants";
 import { Checkbox } from "../common/Checkbox";
 import { listDaysOfWeek } from "../../utils/listDaysOfWeek";
+import { DayOfWeek } from "../../models/day-of-week/types";
 
 export const SettingsPage: React.FC = () => {
-  const { daysOfWeek, setDaysOfWeek, trackingActivated, setTrackingActivated } =
-    useSettingsContext();
+  const {
+    firstDayOfWeek,
+    setFirstDayOfWeek,
+    daysOfWeek,
+    setDaysOfWeek,
+    trackingActivated,
+    setTrackingActivated,
+  } = useSettingsContext();
+
+  const allDaysOfWeek = React.useMemo(
+    () => listDaysOfWeek(firstDayOfWeek),
+    [firstDayOfWeek]
+  );
+
   return (
     <div>
       <small>
@@ -15,8 +28,19 @@ export const SettingsPage: React.FC = () => {
       </small>
       <h1>Einstellungen</h1>
       <h2>Wochentage</h2>
+      <p>Mit welchem Wochentag beginnt die Woche?</p>
+      <select
+        value={firstDayOfWeek}
+        onChange={(e) => setFirstDayOfWeek(+e.target.value as DayOfWeek)}
+      >
+        {allDaysOfWeek.map((key) => (
+          <option key={key} value={key}>
+            {daysOfWeekLabels[key]}
+          </option>
+        ))}
+      </select>
       <p>Welche Wochentage sollen in der Zeitleiste angezeigt werden?</p>
-      {listDaysOfWeek().map((key) => (
+      {allDaysOfWeek.map((key) => (
         <div key={key}>
           <Checkbox
             label={daysOfWeekLabels[key]}
