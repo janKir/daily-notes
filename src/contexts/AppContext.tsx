@@ -37,12 +37,13 @@ export const AppContextProvider: React.FC<React.PropsWithChildren> = ({
   );
   const [date, setDate] = React.useState(new Date());
 
+  const contextValue = React.useMemo(
+    () => ({ notes, setNotes, trackings, setTrackings, date, setDate }),
+    [notes, setNotes, trackings, setTrackings, date, setDate],
+  );
+
   return (
-    <AppContext.Provider
-      value={{ notes, setNotes, trackings, setTrackings, date, setDate }}
-    >
-      {children}
-    </AppContext.Provider>
+    <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>
   );
 };
 

@@ -24,15 +24,18 @@ export const SettingsContextProvider: React.FC<React.PropsWithChildren> = ({
   const [trackingActivated, setTrackingActivated] =
     useLocalStorageState<boolean>("trackingActivated", false);
 
+  const contextValue = React.useMemo(
+    () => ({
+      daysOfWeek,
+      setDaysOfWeek,
+      trackingActivated,
+      setTrackingActivated,
+    }),
+    [daysOfWeek, setDaysOfWeek, trackingActivated, setTrackingActivated],
+  );
+
   return (
-    <SettingsContext.Provider
-      value={{
-        daysOfWeek,
-        setDaysOfWeek,
-        trackingActivated,
-        setTrackingActivated,
-      }}
-    >
+    <SettingsContext.Provider value={contextValue}>
       {children}
     </SettingsContext.Provider>
   );
