@@ -16,7 +16,7 @@ export interface FlexProps {
   grow?: true | number;
   basis?: string | 0;
   className?: string;
-  tag?: keyof JSX.IntrinsicElements;
+  tag?: keyof React.JSX.IntrinsicElements;
 }
 
 export const Flex: React.FC<React.PropsWithChildren<FlexProps>> = ({
