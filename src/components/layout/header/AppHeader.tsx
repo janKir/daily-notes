@@ -1,7 +1,7 @@
 import React from "react";
 import { css } from "@linaria/core";
-import { colors } from "../../styles/colors";
-import { Flex } from "../common/Flex";
+import { colors } from "../../../styles/colors";
+import { Flex } from "../../common/Flex";
 
 export const AppHeader: React.FC = () => {
   return (

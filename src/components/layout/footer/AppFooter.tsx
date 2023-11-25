@@ -1,9 +1,9 @@
 import React from "react";
 import { css } from "@linaria/core";
 import { Link } from "react-router-dom";
-import { colors } from "../../styles/colors";
-import github from "../../assets/github.svg";
-import { Flex } from "../common/Flex";
+import { colors } from "../../../styles/colors";
+import github from "../../../assets/github.svg";
+import { Flex } from "../../common/Flex";
 
 export const AppFooter: React.FC = () => {
   return (
