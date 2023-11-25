@@ -10,7 +10,8 @@ module.exports = {
     "deprecation", // reports usage of deprecated code
   ],
   extends: [
-    "airbnb-typescript", // use airbnb ruleset for typescript as base
+    "airbnb", // use airbnb ruleset for typescript as base
+    "airbnb-typescript",
     "airbnb/hooks", // add lint rules for use of react hooks
     "plugin:@typescript-eslint/recommended",
     "plugin:jest/recommended", // use recommended jest rules
