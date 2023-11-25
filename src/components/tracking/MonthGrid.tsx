@@ -17,11 +17,19 @@ import { listDaysOfWeek } from "../../utils/listDaysOfWeek";
 import { daysOfWeekLabels } from "../../models/day-of-week/constants";
 import { colors } from "../../styles/colors";
 
-export interface MonthGridProps {
-  date: Date;
+export interface MonthGridCellProps {
+  date: Date | null;
 }
 
-export const MonthGrid: React.FC<MonthGridProps> = ({ date }) => {
+export interface MonthGridProps {
+  date: Date;
+  Cell?: React.ComponentType<MonthGridCellProps>;
+}
+
+export const MonthGrid: React.FC<MonthGridProps> = ({
+  date,
+  Cell = React.Fragment,
+}) => {
   const { firstDayOfWeek } = useSettingsContext();
 
   const firstDay = startOfMonth(date);
@@ -29,7 +37,7 @@ export const MonthGrid: React.FC<MonthGridProps> = ({ date }) => {
 
   const daysByWeek = eachWeekOfInterval(
     { start: firstDay, end: lastDay },
-    { weekStartsOn: firstDayOfWeek }
+    { weekStartsOn: firstDayOfWeek },
   ).map((week) => ({
     days: eachDayOfInterval({
       start: startOfWeek(week, { weekStartsOn: firstDayOfWeek }),
@@ -43,9 +51,7 @@ export const MonthGrid: React.FC<MonthGridProps> = ({ date }) => {
   return (
     <Flex grow justify="stretch" align="stretch" role="grid">
       <Flex row role="row">
-        <Flex grow basis={0} role="gridcell" className={cellStyle}>
-          KW:
-        </Flex>
+        <Flex grow basis={0} role="gridcell" className={cellStyle} />
         {allDaysOfWeek.map((day) => (
           <Flex grow basis={0} role="gridcell" className={cellStyle} key={day}>
             {daysOfWeekLabels[day]}
@@ -72,11 +78,12 @@ export const MonthGrid: React.FC<MonthGridProps> = ({ date }) => {
               className={classNames(
                 cellStyle,
                 cellGridStyle,
-                day ? activeCellStyle : inactiveCellStyle
+                day ? activeCellStyle : inactiveCellStyle,
               )}
               key={day?.toISOString()}
             >
               {day ? day.getDate() : null}
+              <Cell date={day} />
             </Flex>
           ))}
         </Flex>
