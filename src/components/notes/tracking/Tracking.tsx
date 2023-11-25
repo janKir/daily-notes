@@ -5,6 +5,7 @@ import { useTrackingTotals } from "../../../hooks/useTrackingTotals";
 import { getDateKey } from "../../../utils/getDateKey";
 import { stateRecord } from "../../../utils/stateRecord";
 import { TrackingRow } from "./TrackingRow";
+import { useSettingsContext } from "../../../contexts/SettingsContext";
 
 export interface TrackingProps {
   date: Date;
@@ -18,9 +19,11 @@ export const Tracking: React.FC<TrackingProps> = ({ date, readonly }) => {
     setTrackings,
   )(getDateKey(date));
 
+  const { firstDayOfWeek } = useSettingsContext();
+
   const weekTotals = useTrackingTotals({
-    startDate: startOfWeek(date, { weekStartsOn: 1 }),
-    endDate: endOfWeek(date, { weekStartsOn: 1 }),
+    startDate: startOfWeek(date, { weekStartsOn: firstDayOfWeek }),
+    endDate: endOfWeek(date, { weekStartsOn: firstDayOfWeek }),
   });
 
   const monthTotals = useTrackingTotals({
