@@ -18,24 +18,36 @@ export function FormattedInput<T>({
   onChange,
   format,
   parse,
+  onFocus,
   onBlur,
   ...inputProps
 }: FormattedInputProps<T>): React.ReactElement {
   const [inputValue, setInputValue] = React.useState(format(value));
+  const [isFocused, setIsFocused] = React.useState(false);
 
   React.useEffect(() => {
-    setInputValue(format(value));
-  }, [value, format]);
+    if (!isFocused) {
+      setInputValue(format(value));
+    }
+  }, [isFocused, value, format]);
 
   return (
     <input
       type="text"
       value={inputValue}
-      onChange={(e) => setInputValue(e.target.value)}
+      onChange={(e) => {
+        const v = parse(e.target.value);
+        setInputValue(e.target.value);
+        onChange?.(v);
+      }}
+      onFocus={(e) => {
+        setIsFocused(true);
+        onFocus?.(e);
+      }}
       onBlur={(e) => {
         const v = parse(e.target.value);
         setInputValue(format(v));
-        onChange?.(v);
+        setIsFocused(false);
         onBlur?.(e);
       }}
       {...inputProps}
