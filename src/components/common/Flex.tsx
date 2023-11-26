@@ -14,6 +14,7 @@ export interface FlexProps {
     | "space-around"
     | "space-evenly";
   grow?: true | number;
+  shrink?: true | number;
   basis?: string | 0;
   className?: string;
   tag?: keyof React.JSX.IntrinsicElements;
@@ -25,6 +26,7 @@ export const Flex: React.FC<React.PropsWithChildren<FlexProps>> = ({
   align = "flex-start",
   justify = "flex-start",
   grow,
+  shrink,
   basis,
   className,
   tag: HtmlTag = "div",
@@ -39,6 +41,7 @@ export const Flex: React.FC<React.PropsWithChildren<FlexProps>> = ({
         "--align": align,
         "--justify": justify,
         "--grow": grow === true ? 1 : grow ?? "initial",
+        "--shrink": shrink === true ? 1 : shrink ?? "initial",
         "--basis": basis ?? "initial",
       })}
       role={role}
@@ -54,5 +57,6 @@ const divStyle = css`
   align-items: var(--align);
   justify-content: var(--justify);
   flex-grow: var(--grow);
+  flex-shrink: var(--shrink);
   flex-basis: var(--basis);
 `;

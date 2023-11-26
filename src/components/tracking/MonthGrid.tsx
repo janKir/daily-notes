@@ -9,8 +9,7 @@ import {
   startOfMonth,
   startOfWeek,
 } from "date-fns";
-import { css } from "@linaria/core";
-import classNames from "classnames";
+import { css, cx } from "@linaria/core";
 import { Flex } from "../common/Flex";
 import { useSettingsContext } from "../../contexts/SettingsContext";
 import { listDaysOfWeek } from "../../utils/listDaysOfWeek";
@@ -62,20 +61,22 @@ export const MonthGrid: React.FC<MonthGridProps> = ({
         <Flex
           row
           grow
+          shrink
           role="row"
           align="stretch"
           key={week.weekNumber}
           className={rowGridStyle}
         >
-          <Flex grow basis={0} role="gridcell" className={cellStyle}>
+          <Flex grow shrink basis={0} role="gridcell" className={cellStyle}>
             KW{week.weekNumber}:
           </Flex>
           {week.days.map((day) => (
             <Flex
               grow
+              shrink
               basis={0}
               role="gridcell"
-              className={classNames(
+              className={cx(
                 cellStyle,
                 cellGridStyle,
                 day ? activeCellStyle : inactiveCellStyle,
@@ -101,6 +102,7 @@ const rowGridStyle = css`
 
 const cellStyle = css`
   padding: 0.5rem;
+  min-width: 5rem;
 `;
 
 const cellGridStyle = css`
