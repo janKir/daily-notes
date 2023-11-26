@@ -4,6 +4,7 @@ import { SlideBar } from "../../common/SlideBar";
 import { CurrentMonth } from "./CurrentMonth";
 import { PrevMonth } from "./PrevMonth";
 import { NextMonth } from "./NextMonth";
+import { SubCurrentMonth } from "./SubCurrentMonth";
 
 export interface MonthBarProps {
   month: Date;
@@ -23,7 +24,7 @@ export const MonthBar: React.FC<MonthBarProps> = ({ month, setMonth }) => {
       current={CurrentMonth}
       prev={PrevMonth}
       next={NextMonth}
-      sub={() => null}
+      sub={SubCurrentMonth}
     />
   );
 };

@@ -1,4 +1,4 @@
-import { differenceInCalendarDays } from "date-fns";
+import { differenceInCalendarDays, differenceInCalendarMonths } from "date-fns";
 
 const locale = navigator.language;
 
@@ -12,4 +12,10 @@ export function formatDiffDaysToday(date: Date): string {
   const now = new Date();
   const diffDays = differenceInCalendarDays(date, now);
   return rtf.format(diffDays, "day");
+}
+
+export function formatDiffMonthsToday(date: Date): string {
+  const now = new Date();
+  const diffMonths = differenceInCalendarMonths(date, now);
+  return rtf.format(diffMonths, "month");
 }
