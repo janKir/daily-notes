@@ -75,6 +75,7 @@ export const MonthGrid: React.FC<MonthGridProps> = ({
               grow
               shrink
               basis={0}
+              align="stretch"
               role="gridcell"
               className={cx(
                 cellStyle,
@@ -114,7 +115,7 @@ const cellGridStyle = css`
 
 const activeCellStyle = css`
   &:hover {
-    background-color: ${colors.teaGreen1};
+    background-color: ${colors.grayLight};
   }
 `;
 
