@@ -6,6 +6,8 @@ import { SlideBarItemProps } from "../../common/SlideBar";
 import { DateFrame } from "../../common/DateFrame";
 import { useDateIsInactiveOrSkipped } from "../../../hooks/useDateIsInactiveOrSkipped";
 
+import "react-datepicker/dist/react-datepicker.css";
+
 registerLocale("de", de);
 
 export const CurrentDay: React.FC<SlideBarItemProps> = ({
