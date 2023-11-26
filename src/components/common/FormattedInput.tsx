@@ -18,6 +18,7 @@ export function FormattedInput<T>({
   onChange,
   format,
   parse,
+  onBlur,
   ...inputProps
 }: FormattedInputProps<T>): React.ReactElement {
   const [inputValue, setInputValue] = React.useState(format(value));
@@ -35,6 +36,7 @@ export function FormattedInput<T>({
         const v = parse(e.target.value);
         setInputValue(format(v));
         onChange?.(v);
+        onBlur?.(e);
       }}
       {...inputProps}
     />

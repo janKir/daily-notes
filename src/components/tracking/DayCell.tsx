@@ -7,6 +7,12 @@ import { colors } from "../../styles/colors";
 import { useTrackingContext } from "../../contexts/TrackingContext";
 import { Progress } from "../common/Progress";
 import { Flex } from "../common/Flex";
+import { FormattedInput } from "../common/FormattedInput";
+import { optionalCall } from "../../utils/optionalCall";
+import { formatHours } from "../../utils/formatHours";
+import { parseHours } from "../../utils/parseHours";
+
+const optionalFormatHours = optionalCall(formatHours, "");
 
 export interface DayCellProps {
   date: Date | null;
@@ -30,15 +36,18 @@ export const DayCell: React.FC<DayCellProps> = ({ date }) => {
       <div>
         <label>
           <div className={labelStyle}>Geplant</div>
-          <input
-            type="number"
+          <FormattedInput
             value={tracking?.planned}
+            format={optionalFormatHours}
+            parse={parseHours}
             size={3}
+            type="text"
             placeholder="0"
-            onChange={(e) => {
+            title="Geplant"
+            onChange={(planned) => {
               setTracking((prevTracking) => ({
                 ...prevTracking,
-                planned: Number(e.target.value),
+                planned,
               }));
             }}
             onFocus={() => setEditMode("planned")}
@@ -82,15 +91,18 @@ export const DayCell: React.FC<DayCellProps> = ({ date }) => {
       <div>
         <label>
           <div className={labelStyle}>Gemacht</div>
-          <input
-            type="number"
+          <FormattedInput
             value={tracking?.actual}
+            format={optionalFormatHours}
+            parse={parseHours}
             size={3}
+            type="text"
             placeholder="0"
-            onChange={(e) => {
+            title="Gemacht"
+            onChange={(actual) => {
               setTracking((prevTracking) => ({
                 ...prevTracking,
-                actual: Number(e.target.value),
+                actual,
               }));
             }}
             onFocus={() => setEditMode("actual")}
