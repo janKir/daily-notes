@@ -3,7 +3,7 @@ import {
   eachDayOfInterval,
   eachWeekOfInterval,
   getISOWeek,
-  isThisMonth,
+  isSameMonth,
   lastDayOfMonth,
   lastDayOfWeek,
   startOfMonth,
@@ -41,7 +41,7 @@ export const MonthGrid: React.FC<MonthGridProps> = ({
     days: eachDayOfInterval({
       start: startOfWeek(week, { weekStartsOn: firstDayOfWeek }),
       end: lastDayOfWeek(week, { weekStartsOn: firstDayOfWeek }),
-    }).map((day) => (isThisMonth(day) ? day : null)),
+    }).map((day) => (isSameMonth(day, date) ? day : null)),
     weekNumber: getISOWeek(week),
   }));
 

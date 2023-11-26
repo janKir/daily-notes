@@ -1,25 +1,20 @@
 import React from "react";
 import { SlideBarItemProps } from "../../common/SlideBar";
 import { Button } from "../../common/Button";
+import { MonthFrame } from "../../common/MonthFrame";
 import { Flex } from "../../common/Flex";
-import { DateFrame } from "../../common/DateFrame";
-import { useDateIsInactiveOrSkipped } from "../../../hooks/useDateIsInactiveOrSkipped";
 
-export const PrevDay: React.FC<SlideBarItemProps> = ({
+export const PrevMonth: React.FC<SlideBarItemProps> = ({
   prevValue,
   onChange,
 }) => {
   const prevDate = new Date(prevValue);
-  const dateIsInactiveOrSkipped = useDateIsInactiveOrSkipped();
 
   return (
     <Button onClick={() => onChange(prevValue)}>
       <Flex row align="center">
         &lsaquo;
-        <DateFrame
-          date={prevDate}
-          inactive={dateIsInactiveOrSkipped(prevDate)}
-        />
+        <MonthFrame date={prevDate} />
       </Flex>
     </Button>
   );
